@@ -1,0 +1,13 @@
+gladiatorsurl: 'http://136.244.87.59'
+frontend: 'http://localhost:4200'
+confirmations: 2
+pythoncalc: 'http://127.0.0.1:5000'
+database:
+  username: 'noonecious'
+  password: 'password'
+  host: 'localhost'
+  port: 5432
+  dbName: 'presale'
+smtp:
+  username: 'presale.discount@gmail.com'
+  password: 'wzulzxdwiwyiajdv '

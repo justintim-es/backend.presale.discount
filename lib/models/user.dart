@@ -1,7 +1,7 @@
 import 'package:baschack/models/card.dart';
-import 'package:baschack/models/card_purchase.dart';
 import 'package:baschack/models/card_user.dart';
 import 'package:baschack/models/payment_user.dart';
+import 'package:baschack/models/redeem.dart';
 import 'package:baschack/models/transaction.dart';
 import 'package:conduit/conduit.dart';
 import 'package:conduit/managed_auth.dart';
@@ -39,8 +39,8 @@ class _User extends ResourceOwnerTableDefinition {
 
   ManagedSet<Transaction>? transactions;
 
-  ManagedSet<CardPurchase>? collections;
+  ManagedSet<Redeem>? redeems;
 
-  ManagedSet<CardPurchase>? purchases;
+  ManagedSet<Redeem>? purchases;
 
 }

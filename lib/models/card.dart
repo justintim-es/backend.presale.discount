@@ -1,7 +1,7 @@
-import 'package:baschack/models/card_purchase.dart';
 import 'package:baschack/models/card_user.dart';
 import 'package:baschack/models/payment.dart';
 import 'package:baschack/models/payment_user.dart';
+import 'package:baschack/models/redeem.dart';
 import 'package:conduit/conduit.dart';
 class Card extends ManagedObject<_Card> implements _Card {}
 class _Card {
@@ -16,5 +16,5 @@ class _Card {
 
   ManagedSet<Payment>? payments;
 
-  ManagedSet<CardPurchase>? purchases;
+  ManagedSet<Redeem>? redeems;
 }

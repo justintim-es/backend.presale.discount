@@ -20,7 +20,7 @@ import 'package:baschack/models/user.dart';
 import 'package:conduit/conduit.dart';
 import 'package:conduit/managed_auth.dart';
 import 'package:mailer/smtp_server.dart';
-
+import 'package:baschack/models/jwt.dart';
 /// This type initializes an application.
 ///
 /// Override methods in this class to set up routes and initialize services like

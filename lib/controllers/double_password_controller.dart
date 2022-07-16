@@ -18,7 +18,7 @@ class DoublePasswordController extends Controller {
             final timelockUserQuery = Query<User>(context)..where((i) => i.id).equalTo(user.id)..values.lock = DateTime.now().add(const Duration(hours: 1));
             await timelockUserQuery.updateOne();
           }
-        } 
+        }   
       } else {
         if (DBCrypt().checkpw(request.raw.headers.value('x-second-password')!, user.secondPassword!)) {
             return request;

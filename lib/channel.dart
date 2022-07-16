@@ -21,6 +21,7 @@ import 'package:conduit/conduit.dart';
 import 'package:conduit/managed_auth.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:baschack/models/jwt.dart';
+import 'package:baschack/controllers/redeem_controller.dart';
 /// This type initializes an application.
 ///
 /// Override methods in this class to set up routes and initialize services like
@@ -115,6 +116,11 @@ class BaschackChannel extends ApplicationChannel {
     .link(() => Authorizer.bearer(authServer!))
     !.link(() => IsConfirmedController(context!))
     !.link(() => CardPurchaseController(context!));
+
+	router.route('/redeems/[:jwt[/:amount]]')
+    .link(() => Authorizer.bearer(authServer!))
+    !.link(() => IsConfirmedController(context!))
+    !.link(() => RedeemController(context!));
 
     return router;
   }

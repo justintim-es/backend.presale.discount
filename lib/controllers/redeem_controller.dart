@@ -33,8 +33,14 @@ class RedeemController extends ResourceController {
     if (estimated >= amount) {
       final cardQuery = Query<Card>(context)..where((i) => i.id).equalTo(claim['cardId'] as int);
       final card = await cardQuery.fetchOne();
-      if ((amount - card!.value!) > 0) {
-        final insertRedeemQuery = Query<Redeem>(context)
+      int cardBalance = card!.value!;
+      for (int i = 0; i < redeems.length; i++) {
+      	if (redeems[i].card!.id == card.id) {
+      		cardBalance -= redeems[i].value!;
+      	} 
+      }
+      if(cardBalance > amount) {
+		final insertRedeemQuery = Query<Redeem>(context)
           ..values.card!.id = claim['cardId'] as int
           ..values.user!.id =  claim['shopper'] as int
           ..values.shop!.id = request!.authorization!.ownerID
@@ -42,8 +48,9 @@ class RedeemController extends ResourceController {
         await insertRedeemQuery.insert();
         final jwtQuery = Query<JWT>(context)..values.used = jwt;
         await jwtQuery.insert();
+      	
       } else {
-        return Response.badRequest(body: "insufficient funds please scan different card");
+	    return Response.badRequest(body: "insufficient funds please scan different card");  	
       }
       return Response.ok("");
     }

@@ -40,7 +40,7 @@ class RedeemController extends ResourceController {
       	} 
       }
       if(cardBalance > amount) {
-		final insertRedeemQuery = Query<Redeem>(context)
+    		final insertRedeemQuery = Query<Redeem>(context)
           ..values.card!.id = claim['cardId'] as int
           ..values.user!.id =  claim['shopper'] as int
           ..values.shop!.id = request!.authorization!.ownerID

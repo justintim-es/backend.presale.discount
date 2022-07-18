@@ -11,6 +11,7 @@ import 'package:baschack/controllers/double_password_controller.dart';
 import 'package:baschack/controllers/is_confirmed_controller.dart';
 import 'package:baschack/controllers/price_controller.dart';
 import 'package:baschack/controllers/public_controller.dart';
+import 'package:baschack/controllers/redeems_controller.dart';
 import 'package:baschack/controllers/register_shop_controller.dart';
 import 'package:baschack/controllers/register_shopper_controller.dart';
 import 'package:baschack/controllers/transfer_controller.dart';
@@ -117,11 +118,15 @@ class BaschackChannel extends ApplicationChannel {
     !.link(() => IsConfirmedController(context!))
     !.link(() => CardPurchaseController(context!));
 
-	router.route('/redeems/[:jwt[/:amount]]')
+	router.route('/redeem/[:jwt[/:amount]]')
     .link(() => Authorizer.bearer(authServer!))
     !.link(() => IsConfirmedController(context!))
     !.link(() => RedeemController(context!));
 
+  router.route('/redeems/:card')
+  .link(() => Authorizer.bearer(authServer!))
+  !.link(() => IsConfirmedController(context!))
+  !.link(() => RedeemsController(context!));
     return router;
   }
 }

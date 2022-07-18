@@ -6,6 +6,7 @@ import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:random_string/random_string.dart';
 import 'package:dio/dio.dart' as d;
+import 'package:dbcrypt/dbcrypt.dart';
 
 class RegisterResellerController extends ResourceController {
   ManagedContext context;
@@ -23,10 +24,13 @@ class RegisterResellerController extends ResourceController {
     final userQuery = Query<User>(context)
       ..values.uschus = Uschus.reseller
       ..values.confirmation = confirmation
+      ..values.isConfirmed = false
       ..values.salt = salt
+      ..values.private = keypair.data['privatusClavis']
+      ..values.public = keypair.data['publicaClavis']
       ..values.username = reseller.email
-      ..values.firstPassword = reseller.firstPassword
-      ..values.secondPassword = reseller.secondPassword
+      ..values.firstPassword = DBCrypt().hashpw(reseller.firstPassword!, DBCrypt().gensalt())
+      ..values.secondPassword = DBCrypt().hashpw(reseller.secondPassword!, DBCrypt().gensalt())
       ..values.hashedPassword = authServer.hashPassword('${reseller.firstPassword}:${reseller.secondPassword}', salt);
     final user = await userQuery.insert();
     final msg = Message()

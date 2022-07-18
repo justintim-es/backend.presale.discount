@@ -1,0 +1,5 @@
+
+
+class ResellerController extends ResourceController {
+	
+}

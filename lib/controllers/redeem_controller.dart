@@ -44,7 +44,8 @@ class RedeemController extends ResourceController {
           ..values.card!.id = claim['cardId'] as int
           ..values.user!.id =  claim['shopper'] as int
           ..values.shop!.id = request!.authorization!.ownerID
-          ..values.value = amount;
+          ..values.value = amount
+          ..values.date = DateTime.now();
         await insertRedeemQuery.insert();
         final jwtQuery = Query<JWT>(context)..values.used = jwt;
         await jwtQuery.insert();

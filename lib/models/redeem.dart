@@ -14,4 +14,6 @@ class _Redeem {
   User? shop;
 
   int? value;
+
+  DateTime? date;
 }

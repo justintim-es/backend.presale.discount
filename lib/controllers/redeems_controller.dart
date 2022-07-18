@@ -14,13 +14,15 @@ class RedeemsController extends ResourceController {
     if (u!.uschus == Uschus.shop) {
       final rq = Query<Redeem>(context)
         ..where((i) => i.card!.id).equalTo(card)
-        ..where((i) => i.shop!.id).equalTo(request!.authorization!.ownerID);
+        ..where((i) => i.shop!.id).equalTo(request!.authorization!.ownerID)
+        ..sortBy((x) => x.date, QuerySortOrder.ascending);
       final r = await rq.fetch();
       return Response.ok(r);
     } else if (u.uschus == Uschus.shopper) {
       final rq = Query<Redeem>(context)
         ..where((i) => i.card!.id).equalTo(card)
-        ..where((i) => i.user!.id).equalTo(request!.authorization!.ownerID);
+        ..where((i) => i.user!.id).equalTo(request!.authorization!.ownerID)
+        ..sortBy((x) => x.date, QuerySortOrder.ascending);
       final r = await rq.fetch();
       return Response.ok(r);
     }

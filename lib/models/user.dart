@@ -33,6 +33,8 @@ class _User extends ResourceOwnerTableDefinition {
   DateTime? lock;
   @Column(nullable: true)
   String? jaguarSecret;
+  @Column(defaultValue: 'false')
+  bool? isPayed;
   ManagedSet<CardUser>? cards;
 
   ManagedSet<PaymentUser>? payments;

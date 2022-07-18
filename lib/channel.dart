@@ -12,6 +12,7 @@ import 'package:baschack/controllers/is_confirmed_controller.dart';
 import 'package:baschack/controllers/price_controller.dart';
 import 'package:baschack/controllers/public_controller.dart';
 import 'package:baschack/controllers/redeems_controller.dart';
+import 'package:baschack/controllers/register_reseller_controller.dart';
 import 'package:baschack/controllers/register_shop_controller.dart';
 import 'package:baschack/controllers/register_shopper_controller.dart';
 import 'package:baschack/controllers/transfer_controller.dart';
@@ -75,6 +76,7 @@ class BaschackChannel extends ApplicationChannel {
     });
     router.route('/register-shop').link(() => RegisterShopController(context!, authServer!, config!, smtp!));
     router.route('/register-shopper').link(() => RegisterShopperController(context!, config!, smtp!, authServer!)); 
+    router.route('/register-reseller').link(() => RegisterResellerController(context!, authServer!, config!, smtp!));
     router.route('/confirm/:confirmation').link(() => ConfirmController(context!));
     router.route('/card-price/:cardId/:subdomain').link(() => CardPriceController(context!));
     router.route('/auth/token').link(() => DoublePasswordController(context!))!.link(() => AuthController(authServer!));

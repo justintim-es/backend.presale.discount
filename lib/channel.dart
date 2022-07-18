@@ -108,7 +108,7 @@ class BaschackChannel extends ApplicationChannel {
     !.link(() => IsConfirmedController(context!))
     !.link(() => TransferController(context!, config!));
 
-    router.route('/balance')
+    router.route('/balance/:card')
     .link(() => Authorizer.bearer(authServer!))
     !.link(() => IsConfirmedController(context!))
     !.link(() => BalanceController(context!, config!));

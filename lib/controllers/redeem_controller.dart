@@ -68,8 +68,8 @@ class RedeemController extends ResourceController {
   }
   @Operation.get('jwt')
   Future<Response> redeemed(@Bind.path('jwt') String jwt) async {
-    final jwtQuery = Query<JWT>(context)..values.used = jwt;
-    final jwtDb = await jwtQuery.fetch();
+    final jwtQuery = Query<JWT>(context)..where((i) => i.used).equalTo(jwt);
+    final jwtDb = await jwtQuery.fetchOne();
     if(jwtDb == null) {
       return Response.noContent();
     } else {

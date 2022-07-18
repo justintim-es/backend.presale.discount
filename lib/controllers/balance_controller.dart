@@ -24,7 +24,8 @@ class BalanceController extends ResourceController {
     Future<Response> cardBalance(@Bind.path('card') int card) async {
       final cardsUsersQuery = Query<CardUser>(context)
         ..where((x) => x.user!.id).equalTo(request!.authorization!.ownerID)
-        ..where((x) => x.card!.id).equalTo(card);
+        ..where((x) => x.card!.id).equalTo(card)
+        ..join(object: (x) => x.card);
       final cardsUsers = await cardsUsersQuery.fetch();
       final redeemsQuery = Query<Redeem>(context)
         ..where((x) => x.user!.id).equalTo(request!.authorization!.ownerID)

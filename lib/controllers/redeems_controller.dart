@@ -15,14 +15,19 @@ class RedeemsController extends ResourceController {
       final rq = Query<Redeem>(context)
         ..where((i) => i.card!.id).equalTo(card)
         ..where((i) => i.shop!.id).equalTo(request!.authorization!.ownerID)
-        ..sortBy((x) => x.date, QuerySortOrder.descending);
+        ..sortBy((x) => x.date, QuerySortOrder.descending)
+        ..values.removePropertiesFromBackingMap(['redeemId'])
+        ..returningProperties((r) => [r.date, r.value]);
       final r = await rq.fetch();
       return Response.ok(r);
     } else if (u.uschus == Uschus.shopper) {
       final rq = Query<Redeem>(context)
         ..where((i) => i.card!.id).equalTo(card)
         ..where((i) => i.user!.id).equalTo(request!.authorization!.ownerID)
-        ..sortBy((x) => x.date, QuerySortOrder.descending);
+        ..sortBy((x) => x.date, QuerySortOrder.descending)
+        ..values.removePropertiesFromBackingMap(['redeeemId'])
+        ..returningProperties((r) => [r.date, r.value]);
+
       final r = await rq.fetch();
       return Response.ok(r);
     }

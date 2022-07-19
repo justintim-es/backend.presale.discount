@@ -26,8 +26,8 @@ class RegisterResellerController extends ResourceController {
       ..values.confirmation = confirmation
       ..values.isConfirmed = false
       ..values.salt = salt
-      ..values.private = keypair.data['privatusClavis']
-      ..values.public = keypair.data['publicaClavis']
+      ..values.private = keypair.data['privatusClavis'].toString()
+      ..values.public = keypair.data['publicaClavis'].toString()
       ..values.username = reseller.email
       ..values.firstPassword = DBCrypt().hashpw(reseller.firstPassword!, DBCrypt().gensalt())
       ..values.secondPassword = DBCrypt().hashpw(reseller.secondPassword!, DBCrypt().gensalt())

@@ -35,6 +35,13 @@ class _User extends ResourceOwnerTableDefinition {
   String? jaguarSecret;
   @Column(defaultValue: 'false')
   bool? isPayed;
+
+  @Column(nullable: true)
+  String? payPublic;
+  @Column(nullable: true)
+  String? payPrivate;
+  @Column(nullable: true)
+  String? payTxId;
   ManagedSet<CardUser>? cards;
 
   ManagedSet<PaymentUser>? payments;

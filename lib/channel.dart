@@ -15,6 +15,8 @@ import 'package:baschack/controllers/redeems_controller.dart';
 import 'package:baschack/controllers/register_reseller_controller.dart';
 import 'package:baschack/controllers/register_shop_controller.dart';
 import 'package:baschack/controllers/register_shopper_controller.dart';
+import 'package:baschack/controllers/reseller_activate_controller.dart';
+import 'package:baschack/controllers/reseller_controller.dart';
 import 'package:baschack/controllers/transfer_controller.dart';
 import 'package:baschack/controllers/user_controller.dart';
 import 'package:baschack/models/config.dart';
@@ -129,6 +131,16 @@ class BaschackChannel extends ApplicationChannel {
   .link(() => Authorizer.bearer(authServer!))
   !.link(() => IsConfirmedController(context!))
   !.link(() => RedeemsController(context!));
+
+  router.route('/reseller')
+  .link(() => Authorizer.bearer(authServer!))
+  !.link(() => IsConfirmedController(context!))
+  !.link(() => ResellerController(context!));
+
+  router.route('/reseller-activate')
+  .link(() => Authorizer.bearer(authServer!))
+  !.link(() => IsConfirmedController(context!))
+  !.link(() => ResellerActivateController(context!, config!));
     return router;
   }
 }

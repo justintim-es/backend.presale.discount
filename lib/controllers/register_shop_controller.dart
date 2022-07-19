@@ -15,8 +15,8 @@ class RegisterShopController extends ResourceController {
   SmtpServer smtp;
   RegisterShopController(this.context, this.authServer, this.config, this.smtp);
 
-  @Operation.post()
-  Future<Response> register(@Bind.body() ShopRegister shopRegister) async {
+  @Operation.post('reseller')
+  Future<Response> register(@Bind.path('reseller') int reseller, @Bind.body() ShopRegister shopRegister) async {
     final salt = await AuthUtility.generateRandomSalt();
     final confirmation = randomAlphaNumeric(256);
     final keypair = await d.Dio().get('${config.gladiatorsurl}/rationem');
@@ -31,6 +31,7 @@ class RegisterShopController extends ResourceController {
       ..values.private = keypair.data['publicaClavis'].toString()
       ..values.subdomain = shopRegister.subdomain
       ..values.isConfirmed = false
+      ..values.reseller = reseller
       ..values.jaguarSecret = randomAlphaNumeric(16)
       ..values.firstPassword = DBCrypt().hashpw(shopRegister.firstPassword!, DBCrypt().gensalt())
       ..values.secondPassword = DBCrypt().hashpw(shopRegister.secondPassword!, DBCrypt().gensalt())

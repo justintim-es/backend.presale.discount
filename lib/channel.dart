@@ -76,7 +76,7 @@ class BaschackChannel extends ApplicationChannel {
     router.route("/example").linkFunction((request) async {
       return Response.ok({"key": "value"});
     });
-    router.route('/register-shop').link(() => RegisterShopController(context!, authServer!, config!, smtp!));
+    router.route('/register-shop/:reseller').link(() => RegisterShopController(context!, authServer!, config!, smtp!));
     router.route('/register-shopper').link(() => RegisterShopperController(context!, config!, smtp!, authServer!)); 
     router.route('/register-reseller').link(() => RegisterResellerController(context!, authServer!, config!, smtp!));
     router.route('/confirm/:confirmation').link(() => ConfirmController(context!));

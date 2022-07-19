@@ -6,6 +6,7 @@ class ShopRegister extends Serializable {
   String? firstPassword;
   String? secondPassword;
   String? subdomain;
+  int? reseller;
 
   @override
   Map<String, dynamic> asMap() => {
@@ -14,7 +15,8 @@ class ShopRegister extends Serializable {
     'city': city,
     'firstPassword': firstPassword,
     'secondPassword': secondPassword,
-    'subdomain': subdomain
+    'subdomain': subdomain,
+    'reseller': reseller
   };
 
   @override
@@ -25,6 +27,6 @@ class ShopRegister extends Serializable {
     firstPassword = object['firstPassword'].toString();
     secondPassword = object['secondPassword'].toString();
     subdomain = object['subdomain'].toString();
+    reseller = int.parse(['reseller'].toString());
   }
-
 }

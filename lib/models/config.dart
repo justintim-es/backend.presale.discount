@@ -6,8 +6,8 @@ class Config extends Configuration {
   String? gladiatorsurl;
   String? pythoncalc;
   String? frontend;
-  String? activateGla;
   String? publicKey;
+  String? activategla;
   int? average;
   int? confirmations;
   DatabaseConfig? database;

@@ -42,6 +42,8 @@ class _User extends ResourceOwnerTableDefinition {
   String? payPrivate;
   @Column(nullable: true)
   String? payTxId;
+  @Column(nullable: true)
+  String? requestGla;
   ManagedSet<CardUser>? cards;
 
   ManagedSet<PaymentUser>? payments;
